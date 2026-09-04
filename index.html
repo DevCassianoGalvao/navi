@@ -16,13 +16,33 @@
   a:hover{color:#ff4d58}
   @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
+  /* Shimmer Line Button — animated light tracing the border + face sheen.
+     Keeps each button's own pill radius (border-radius:inherit) and fill. */
+  @keyframes sl-line{0%{background-position:220% 0}100%{background-position:-220% 0}}
+  @keyframes sl-sheen{0%,58%{transform:translateX(-160%) skewX(-18deg)}100%{transform:translateX(360%) skewX(-18deg)}}
+  .shimmer-btn{position:relative;overflow:hidden;isolation:isolate}
+  .shimmer-btn::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.6px;
+    background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.9) 50%,rgba(255,255,255,0) 100%);
+    background-size:220% 100%;
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;
+    animation:sl-line 2.6s linear infinite;pointer-events:none;z-index:2}
+  .shimmer-btn::after{content:"";position:absolute;top:-25%;left:0;width:32%;height:150%;
+    background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.4),rgba(255,255,255,0));
+    transform:translateX(-160%) skewX(-18deg);
+    animation:sl-sheen 3.6s ease-in-out infinite;pointer-events:none;z-index:1}
+  @media (prefers-reduced-motion:reduce){
+    .shimmer-btn::before{animation:none}
+    .shimmer-btn::after{animation:none;opacity:0}
+  }
+
   /* ---------- Responsiveness ----------
      NB: selectors use stable hooks (tag / data-* / .r* classes), never
      [style*=] on animated nodes — the reveal script rewrites their style
      attribute (normalising spacing) and substring matches would break. */
   @media (max-width:960px){
     #root section[style*="110px 64px"]{padding:72px 32px!important}
-    #root [style*="80px 64px 0"]{padding:48px 32px 0!important}
+    #root [style*="128px 64px 72px"]{padding:88px 32px 48px!important}
     #root [data-hero-anim="7"]{padding-left:32px!important;padding-right:32px!important;padding-bottom:56px!important}
     #root [style*="20px 64px"]{padding:16px 32px!important}
     #root footer[style*="56px 64px 32px"]{padding:48px 32px 28px!important}
@@ -32,7 +52,7 @@
   }
   @media (max-width:720px){
     #root section[style*="110px 64px"]{padding:56px 20px!important}
-    #root [style*="80px 64px 0"]{padding:36px 20px 0!important}
+    #root [style*="128px 64px 72px"]{padding:64px 20px 40px!important}
     #root [data-hero-anim="7"]{padding-left:20px!important;padding-right:20px!important;padding-bottom:48px!important}
     #root [style*="20px 64px"]{padding:14px 20px!important}
     #root footer[style*="56px 64px 32px"]{padding:40px 20px 24px!important}
@@ -59,12 +79,12 @@
       <img src="assets/logo-white-red.svg" alt="Navi Occupational Therapy" style="height:48px;width:auto;display:block">
       <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
         <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;color:#ffffff;font-size:0.95rem">0416 524 129</span>
-        <a href="#referral" style="text-decoration:none;background:#ff4d58;color:#ffffff;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.85rem;letter-spacing:0.04em;padding:12px 24px;border-radius:999px;transition:transform .25s ease,box-shadow .25s ease;display:inline-block" style-hover="transform:scale(1.05);box-shadow:0 10px 24px rgba(0,0,0,0.25)">MAKE A REFERRAL</a>
+        <a href="#referral" class="shimmer-btn" style="text-decoration:none;background:#ff4d58;color:#ffffff;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.85rem;letter-spacing:0.04em;padding:12px 24px;border-radius:999px;transition:transform .25s ease,box-shadow .25s ease;display:inline-block" style-hover="transform:scale(1.05);box-shadow:0 10px 24px rgba(0,0,0,0.25)">MAKE A REFERRAL</a>
       </div>
     </div>
   </div>
 
-  <div style="position:relative;display:flex;gap:64px;flex-wrap:wrap;padding:80px 64px 0;max-width:1360px;margin:0 auto;align-items:flex-start">
+  <div style="position:relative;display:flex;gap:64px;flex-wrap:wrap;padding:128px 64px 72px;max-width:1360px;margin:0 auto;align-items:flex-start">
     <div style="flex:1 1 460px;min-width:320px;display:flex;flex-direction:column;gap:20px">
       <div data-hero-anim="1" style="display:flex;align-items:center;gap:10px">
         <span style="width:8px;height:8px;border-radius:50%;background:#ff4d58;display:inline-block"></span>
@@ -80,7 +100,7 @@
       <p data-hero-anim="3" style="font-family:'Shadows Into Light',cursive;color:#ff4d58;font-size:1.7rem;line-height:1.1;margin:4px 0 0">You steer. We support.</p>
 
       <div data-hero-anim="4" style="display:flex;gap:16px;flex-wrap:wrap;margin-top:6px">
-        <a href="#referral" style="text-decoration:none;background:#ff4d58;color:#1f2750;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:0.04em;padding:16px 30px;border-radius:999px;transition:transform .25s ease,box-shadow .25s ease;display:inline-block" style-hover="transform:scale(1.05);box-shadow:0 12px 28px rgba(255,77,88,0.4)">MAKE A REFERRAL</a>
+        <a href="#referral" class="shimmer-btn" style="text-decoration:none;background:#ff4d58;color:#1f2750;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:0.04em;padding:16px 30px;border-radius:999px;transition:transform .25s ease,box-shadow .25s ease;display:inline-block" style-hover="transform:scale(1.05);box-shadow:0 12px 28px rgba(255,77,88,0.4)">MAKE A REFERRAL</a>
         <a href="#contact" style="text-decoration:none;background:transparent;color:#2a3469;border:2px solid #2a3469;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:0.04em;padding:14px 28px;border-radius:999px;transition:background .25s ease,color .25s ease;display:inline-block" style-hover="background:#2a3469;color:#ffffff">BOOK A FREE CHAT</a>
       </div>
 
@@ -412,7 +432,7 @@
       <h2 data-reveal-item="" style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#2a3469;font-size:clamp(1.9rem,3.6vw,2.8rem);margin:0;line-height:1.15">Let's find the right support for this journey</h2>
       <p data-reveal-item="" style="margin:0;color:#3d446b;font-size:1.05rem;line-height:1.6">Whether you need an occupational assessment, a high-quality clinical report, paediatric support, or simply want to talk through a referral, Navi is ready to guide the next steps.</p>
       <div data-reveal-item="" id="referral" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:6px">
-        <a href="#" style="text-decoration:none;background:#ff4d58;color:#1f2750;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:0.04em;padding:16px 30px;border-radius:999px;transition:transform .25s ease,box-shadow .25s ease;display:inline-block" style-hover="transform:scale(1.05);box-shadow:0 12px 28px rgba(255,77,88,0.4)">MAKE A REFERRAL</a>
+        <a href="#" class="shimmer-btn" style="text-decoration:none;background:#ff4d58;color:#1f2750;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:0.04em;padding:16px 30px;border-radius:999px;transition:transform .25s ease,box-shadow .25s ease;display:inline-block" style-hover="transform:scale(1.05);box-shadow:0 12px 28px rgba(255,77,88,0.4)">MAKE A REFERRAL</a>
         <a href="mailto:hello@naviot.com.au" style="text-decoration:none;background:transparent;color:#2a3469;border:2px solid #2a3469;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:0.04em;padding:14px 28px;border-radius:999px;transition:background .25s ease,color .25s ease;display:inline-block" style-hover="background:#2a3469;color:#ffffff">TALK TO NAVI</a>
       </div>
     </div>
