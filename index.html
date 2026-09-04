@@ -15,6 +15,41 @@
   a{color:#2a3469}
   a:hover{color:#ff4d58}
   @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+  /* Sharper downscaling of the large source photos (esp. Chrome). */
+  #root img[src$=".jpg"]{image-rendering:-webkit-optimize-contrast}
+
+  /* ---------- Responsiveness ---------- */
+  @media (max-width:960px){
+    #root [style*="110px 64px"]{padding-top:72px!important;padding-bottom:72px!important;padding-left:32px!important;padding-right:32px!important}
+    #root [style*="80px 64px 0"]{padding:48px 32px 0!important}
+    #root [style*="36px 64px 80px"]{padding:28px 32px 64px!important}
+    #root [style*="20px 64px"]{padding:16px 32px!important}
+    #root footer[style*="56px 64px 32px"]{padding:48px 32px 28px!important}
+    #root [style*="repeat(3,1fr)"]{grid-template-columns:repeat(2,1fr)!important}
+    #root [style*="gap:64px"]{gap:40px!important}
+    #root [style*="gap:56px"]{gap:36px!important}
+  }
+  @media (max-width:720px){
+    #root [style*="110px 64px"]{padding-top:56px!important;padding-bottom:56px!important;padding-left:20px!important;padding-right:20px!important}
+    #root [style*="80px 64px 0"]{padding:36px 20px 0!important}
+    #root [style*="36px 64px 80px"]{padding:24px 20px 52px!important}
+    #root [style*="20px 64px"]{padding:14px 20px!important}
+    #root footer[style*="56px 64px 32px"]{padding:40px 20px 24px!important}
+    #root [style*="repeat(3,1fr)"]{grid-template-columns:1fr!important}
+    #root [style*="repeat(2,1fr)"]{grid-template-columns:1fr!important}
+    #root [style*="repeat(auto-fit,minmax(220px,1fr))"]{grid-template-columns:1fr!important}
+    #root [style*="flex:0 0 260px"]{flex:1 1 100%!important;width:100%!important}
+    #root [style*="flex:0 0 380px"]{flex:1 1 100%!important}
+    #root [style*="grid-template-columns:1.15fr 1fr"]{grid-template-columns:1fr 1fr!important}
+    #root h1[data-hero-anim]{font-size:1.75rem!important}
+    #root [style*="48px 56px"]{padding:36px 24px!important}
+    #root [style*="padding:48px 56px"]{padding:32px 22px!important}
+  }
+  @media (max-width:460px){
+    #root [style*="repeat(2,1fr)"]{grid-template-columns:1fr!important}
+    #root [style*="flex-wrap:wrap"] [style*="border-radius:999px"]{width:100%;text-align:center}
+  }
 </style>
 </head>
 <body>
@@ -22,7 +57,7 @@
 <div id="root" style="font-family:'Public Sans',sans-serif;background:#faf9f7;overflow:hidden">
 
 <!-- ============ HERO ============ -->
-<section style="position:relative;background:#faf9f7">
+<section style="position:relative;background:#ffffff">
   <div style="background:#2a3469">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding:20px 64px;max-width:1360px;margin:0 auto">
       <img src="./logo-branco-mtm6zgw1-tflz.svg" alt="Navi Occupational Therapy" style="height:48px;width:auto;display:block">
@@ -46,6 +81,8 @@
 
       <p data-hero-anim="3" style="font-family:'Public Sans',sans-serif;font-size:0.98rem;color:#5c6390;line-height:1.65;margin:0;max-width:520px">With more than 20 years of clinical experience, Navi offers collaborative, practical and personalised care to support participants, families and teams in making decisions, building independence, and taking part in the activities that matter most.</p>
 
+      <p data-hero-anim="3" style="font-family:'Shadows Into Light',cursive;color:#ff4d58;font-size:1.7rem;line-height:1.1;margin:4px 0 0">You steer. We support.</p>
+
       <div data-hero-anim="4" style="display:flex;gap:16px;flex-wrap:wrap;margin-top:6px">
         <a href="#referral" style="text-decoration:none;background:#ff4d58;color:#1f2750;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:0.04em;padding:16px 30px;border-radius:999px;transition:transform .25s ease,box-shadow .25s ease;display:inline-block" style-hover="transform:scale(1.05);box-shadow:0 12px 28px rgba(255,77,88,0.4)">MAKE A REFERRAL</a>
         <a href="#contact" style="text-decoration:none;background:transparent;color:#2a3469;border:2px solid #2a3469;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:0.04em;padding:14px 28px;border-radius:999px;transition:background .25s ease,color .25s ease;display:inline-block" style-hover="background:#2a3469;color:#ffffff">BOOK A FREE CHAT</a>
@@ -64,28 +101,30 @@
         <div style="grid-column:2;grid-row:2;border-radius:24px;overflow:hidden;box-shadow:0 20px 40px rgba(42,52,105,0.15)">
           <img src="assets/child-maze-book.jpg" alt="A child working through a maze activity book during a session" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease" style-hover="transform:scale(1.06)">
         </div>
-        <div style="position:absolute;left:16px;bottom:-24px;background:#ffffff;border-radius:20px;padding:16px 20px;box-shadow:0 16px 34px rgba(42,52,105,0.22);display:flex;flex-direction:column;animation:floaty 6s ease-in-out infinite">
-          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#ff4d58;font-size:1.7rem;line-height:1">20+</span>
-          <span style="color:#2a3469;font-size:0.78rem;font-weight:600">years of experience</span>
+        <div style="position:absolute;left:0;right:0;bottom:-30px;display:flex;justify-content:center">
+          <div style="background:#ffffff;border-radius:22px;padding:18px 34px;box-shadow:0 18px 38px rgba(42,52,105,0.24);display:flex;flex-direction:column;align-items:center;text-align:center;animation:floaty 6s ease-in-out infinite">
+            <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#ff4d58;font-size:2.2rem;line-height:1">20+</span>
+            <span style="color:#2a3469;font-size:0.82rem;font-weight:600;letter-spacing:0.02em">years of experience</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div style="border-top:1px solid #e2e8f1;margin-top:56px">
-    <div data-hero-anim="7" style="display:flex;flex-direction:column;align-items:center;gap:22px;padding:36px 64px 80px;max-width:1360px;margin:0 auto">
-      <div style="background:#ffffff;border:1px solid #dfe7f0;border-radius:20px;padding:22px 26px;box-shadow:0 12px 30px rgba(42,52,105,0.06);max-width:640px;width:100%">
-        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#2a3469;font-size:0.95rem;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.06em;text-align:center">Current availability</div>
+  <div style="background:#eef2f7;margin-top:64px">
+    <div data-hero-anim="7" style="display:flex;flex-direction:column;align-items:stretch;gap:22px;padding:36px 64px 80px;max-width:1360px;margin:0 auto">
+      <div style="background:#ffffff;border:1px solid #dfe7f0;border-radius:20px;padding:24px 30px;box-shadow:0 12px 30px rgba(42,52,105,0.06);width:100%">
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#2a3469;font-size:0.95rem;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.06em;text-align:left">Current availability</div>
         <div style="display:flex;flex-direction:column;gap:6px">
           <p style="margin:0;color:#4a5178;font-size:0.94rem;line-height:1.5"><strong style="color:#2a3469">Occupational assessments:</strong> immediate availability.</p>
           <p style="margin:0;color:#4a5178;font-size:0.94rem;line-height:1.5"><strong style="color:#2a3469">Ongoing in-clinic paediatric Occupational Therapy:</strong> currently limited availability in Robina.</p>
         </div>
       </div>
-      <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
-        <span style="background:#eaf1f7;color:#2a3469;font-size:0.82rem;font-weight:600;padding:9px 16px;border-radius:999px">20+ years of clinical experience</span>
-        <span style="background:#eaf1f7;color:#2a3469;font-size:0.82rem;font-weight:600;padding:9px 16px;border-radius:999px">Reports typically within 10 business days</span>
-        <span style="background:#eaf1f7;color:#2a3469;font-size:0.82rem;font-weight:600;padding:9px 16px;border-radius:999px">~80% of new clients come through referrals</span>
-        <span style="background:#eaf1f7;color:#2a3469;font-size:0.82rem;font-weight:600;padding:9px 16px;border-radius:999px">Mobile assessments SEQ + paediatric care in Robina</span>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-start">
+        <span style="background:#dbe6f1;color:#2a3469;font-size:0.82rem;font-weight:600;padding:9px 16px;border-radius:999px">20+ years of clinical experience</span>
+        <span style="background:#dbe6f1;color:#2a3469;font-size:0.82rem;font-weight:600;padding:9px 16px;border-radius:999px">Reports typically within 10 business days</span>
+        <span style="background:#dbe6f1;color:#2a3469;font-size:0.82rem;font-weight:600;padding:9px 16px;border-radius:999px">~80% of new clients come through referrals</span>
+        <span style="background:#dbe6f1;color:#2a3469;font-size:0.82rem;font-weight:600;padding:9px 16px;border-radius:999px">Mobile assessments SEQ + paediatric care in Robina</span>
       </div>
     </div>
   </div>
@@ -264,7 +303,7 @@
     </div>
 
     <div data-reveal-group="s4quote" data-reveal-item="" style="background:#1f2750;border-radius:28px;padding:48px 56px;text-align:center;box-shadow:0 24px 50px rgba(0,0,0,0.25)">
-      <div style="font-family:'Shadows Into Light',cursive;color:#ff8a91;font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:14px">"You Steer, We Support"</div>
+      <div style="font-family:'Shadows Into Light',cursive;color:#ff4d58;font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:14px">"You Steer, We Support"</div>
       <p style="margin:0;color:#dbe1f2;font-size:1.05rem;line-height:1.6;max-width:600px;margin:0 auto">You steer the journey. Navi provides the clinical support, clarity and collaboration you need along the way.</p>
     </div>
   </div>
@@ -301,22 +340,22 @@
 
         <div data-reveal-group="s5values" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
           <div data-glow="" style="display:flex;flex-direction:column;gap:8px;padding:24px;background:#ffffff;border:1px solid #e6ecf3;border-radius:20px;position:relative;overflow:hidden">
-            <img src="assets/symbol-coral.svg" alt="" style="width:28px;height:auto;display:block">
+            <img src="assets/symbol-coral.svg" alt="" style="width:38px;height:auto;display:block">
             <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#2a3469;font-size:1.05rem;margin:0">Compassion</h3>
             <p style="margin:0;color:#4a5178;font-size:0.9rem;line-height:1.55">Welcoming each participant and family with empathy, respect and understanding, recognising that every journey is unique.</p>
           </div>
           <div data-glow="" style="display:flex;flex-direction:column;gap:8px;padding:24px;background:#ffffff;border:1px solid #e6ecf3;border-radius:20px;position:relative;overflow:hidden">
-            <img src="assets/symbol-coral.svg" alt="" style="width:28px;height:auto;display:block">
+            <img src="assets/symbol-coral.svg" alt="" style="width:38px;height:auto;display:block">
             <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#2a3469;font-size:1.05rem;margin:0">Integrity</h3>
             <p style="margin:0;color:#4a5178;font-size:0.9rem;line-height:1.55">Acting ethically, honestly and on an evidence-based footing, with clinically consistent assessments and recommendations guided by the participant's best interests.</p>
           </div>
           <div data-glow="" style="display:flex;flex-direction:column;gap:8px;padding:24px;background:#ffffff;border:1px solid #e6ecf3;border-radius:20px;position:relative;overflow:hidden">
-            <img src="assets/symbol-coral.svg" alt="" style="width:28px;height:auto;display:block">
+            <img src="assets/symbol-coral.svg" alt="" style="width:38px;height:auto;display:block">
             <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#2a3469;font-size:1.05rem;margin:0">Family-centred care</h3>
             <p style="margin:0;color:#4a5178;font-size:0.9rem;line-height:1.55">Building solutions in partnership with participants, families, carers, educators, Support Coordinators and multidisciplinary teams.</p>
           </div>
           <div data-glow="" style="display:flex;flex-direction:column;gap:8px;padding:24px;background:#ffffff;border:1px solid #e6ecf3;border-radius:20px;position:relative;overflow:hidden">
-            <img src="assets/symbol-coral.svg" alt="" style="width:28px;height:auto;display:block">
+            <img src="assets/symbol-coral.svg" alt="" style="width:38px;height:auto;display:block">
             <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#2a3469;font-size:1.05rem;margin:0">Inclusion</h3>
             <p style="margin:0;color:#4a5178;font-size:0.9rem;line-height:1.55">Offering an accessible, respectful and culturally responsive service that values each person's abilities, experiences, goals and individuality.</p>
           </div>
@@ -417,7 +456,7 @@
   <span style="position:absolute;right:-40px;bottom:-40px;opacity:0.06"><img src="assets/symbol-white.svg" alt="" style="width:260px;height:auto;display:block"></span>
   <div style="max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;position:relative;z-index:1">
     <div style="display:flex;flex-direction:column;gap:14px;max-width:320px">
-      <img style="height:69px;width:67px;display:block;opacity:1;object-fit:none" src="./logo-branco-mtm6ovve-8wax.svg" alt="Navi Occupational Therapy">
+      <img style="height:64px;width:auto;display:block;object-fit:contain" src="./logo-branco-mtm6ovve-8wax.svg" alt="Navi Occupational Therapy">
       <span style="font-family:'Shadows Into Light',cursive;color:#ff4d58;font-size:1.3rem">You steer. We support.</span>
       <p style="margin:8px 0 0;color:#8f9ac2;font-size:0.85rem;line-height:1.6">Occupational Therapy for assessments, clinical reports and paediatric care across South East Queensland.</p>
     </div>
