@@ -66,6 +66,57 @@
   @media (max-width:460px){
     #root [data-reveal-group="s7contact"]{grid-template-columns:1fr!important}
   }
+
+  /* ---------- Depth Carousel ---------- */
+  .dcar{position:relative;max-width:1080px;margin:36px auto 0;overflow:hidden}
+  .dcar-stage{position:relative;height:clamp(240px,40vw,440px);perspective:1600px}
+  .dcar-track{position:absolute;inset:0;margin:0;padding:0;list-style:none;transform-style:preserve-3d}
+  .dcar-slide{position:absolute;top:50%;left:50%;width:min(60%,540px);aspect-ratio:3/2;margin:0;
+    transform:translate(-50%,-50%);opacity:0;pointer-events:none;
+    border-radius:18px;overflow:hidden;background:#d9e2ee;
+    box-shadow:0 28px 56px rgba(31,39,80,.28);cursor:pointer;
+    transition:transform .6s cubic-bezier(.22,.61,.36,1),opacity .6s ease;
+    will-change:transform,opacity}
+  .dcar-slide img{width:100%;height:100%;object-fit:cover;display:block;
+    -webkit-user-drag:none;user-select:none}
+  .dcar-slide.is-active{cursor:zoom-in}
+  .dcar-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:30;
+    width:46px;height:46px;border:0;border-radius:50%;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    background:#ffffff;color:#2a3469;font:1.5rem/1 'Space Grotesk',sans-serif;
+    box-shadow:0 10px 24px rgba(31,39,80,.22);transition:background .2s ease,color .2s ease}
+  .dcar-nav:hover{background:#ff4d58;color:#ffffff}
+  .dcar-prev{left:4px}
+  .dcar-next{right:4px}
+  .dcar-dots{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:22px}
+  .dcar-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;cursor:pointer;
+    background:#c2cfe0;transition:background .2s ease,transform .2s ease}
+  .dcar-dot.is-active{background:#ff4d58;transform:scale(1.35)}
+  @media (max-width:640px){
+    .dcar-stage{height:clamp(210px,62vw,300px)}
+    .dcar-slide{width:min(76%,420px)}
+    .dcar-nav{width:40px;height:40px;font-size:1.3rem}
+  }
+  .dcar-lb{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;
+    padding:clamp(12px,4vw,48px);background:rgba(18,22,45,.92);opacity:0;transition:opacity .25s ease}
+  .dcar-lb.is-open{opacity:1}
+  .dcar-lb-img{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;
+    box-shadow:0 30px 80px rgba(0,0,0,.55)}
+  .dcar-lb button{position:absolute;border:0;cursor:pointer;color:#ffffff;
+    display:flex;align-items:center;justify-content:center;line-height:1;
+    background:rgba(255,255,255,.14);border-radius:50%;transition:background .2s ease}
+  .dcar-lb button:hover{background:#ff4d58}
+  .dcar-lb-close{top:14px;right:18px;width:44px;height:44px;font-size:1.6rem}
+  .dcar-lb-nav{top:50%;transform:translateY(-50%);width:52px;height:52px;font-size:1.9rem}
+  .dcar-lb-prev{left:max(10px,2vw)}
+  .dcar-lb-next{right:max(10px,2vw)}
+  @media (max-width:640px){
+    .dcar-lb-nav{width:42px;height:42px;font-size:1.5rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .dcar-slide{transition-duration:.001s}
+    .dcar-lb{transition-duration:.001s}
+  }
 </style>
 </head>
 <body>
@@ -464,6 +515,31 @@
       <p style="margin:24px 0 0;color:#3d446b;font-size:1.02rem;line-height:1.7">At Navi, every person is more than an assessment, a report, or a list of goals. Our role is to understand what matters to you and to offer careful, clear, evidence-based clinical support to help you navigate every next step with confidence.</p>
       <p style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;color:#2a3469;font-size:1.15rem">You Steer, We Support.</p>
     </div>
+
+    <div data-reveal-group="s7carousel" style="margin-top:8px">
+      <div class="dcar" data-dcar aria-roledescription="carousel" aria-label="Photos from Navi Occupational Therapy">
+        <div class="dcar-stage">
+          <button type="button" class="dcar-nav dcar-prev" aria-label="Previous photo">&#8249;</button>
+          <ul class="dcar-track">
+            <li class="dcar-slide"><img src="assets/carousel/c1.jpg" alt="Navi Occupational Therapy session photo 1" loading="lazy" decoding="async"></li>
+            <li class="dcar-slide"><img src="assets/carousel/c2.jpg" alt="Navi Occupational Therapy session photo 2" loading="lazy" decoding="async"></li>
+            <li class="dcar-slide"><img src="assets/carousel/c3.jpg" alt="Navi Occupational Therapy session photo 3" loading="lazy" decoding="async"></li>
+            <li class="dcar-slide"><img src="assets/carousel/c4.jpg" alt="Navi Occupational Therapy session photo 4" loading="lazy" decoding="async"></li>
+            <li class="dcar-slide"><img src="assets/carousel/c5.jpg" alt="Navi Occupational Therapy session photo 5" loading="lazy" decoding="async"></li>
+            <li class="dcar-slide"><img src="assets/carousel/c6.jpg" alt="Navi Occupational Therapy session photo 6" loading="lazy" decoding="async"></li>
+            <li class="dcar-slide"><img src="assets/carousel/c7.jpg" alt="Navi Occupational Therapy session photo 7" loading="lazy" decoding="async"></li>
+            <li class="dcar-slide"><img src="assets/carousel/c8.jpg" alt="Navi Occupational Therapy session photo 8" loading="lazy" decoding="async"></li>
+            <li class="dcar-slide"><img src="assets/carousel/c9.jpg" alt="Navi Occupational Therapy session photo 9" loading="lazy" decoding="async"></li>
+            <li class="dcar-slide"><img src="assets/carousel/c10.jpg" alt="Navi Occupational Therapy session photo 10" loading="lazy" decoding="async"></li>
+            <li class="dcar-slide"><img src="assets/carousel/c11.jpg" alt="Navi Occupational Therapy session photo 11" loading="lazy" decoding="async"></li>
+            <li class="dcar-slide"><img src="assets/carousel/c12.jpg" alt="Navi Occupational Therapy session photo 12" loading="lazy" decoding="async"></li>
+            <li class="dcar-slide"><img src="assets/carousel/c13.jpg" alt="Navi Occupational Therapy session photo 13" loading="lazy" decoding="async"></li>
+          </ul>
+          <button type="button" class="dcar-nav dcar-next" aria-label="Next photo">&#8250;</button>
+        </div>
+        <div class="dcar-dots" role="tablist" aria-label="Choose photo"></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -486,6 +562,13 @@
   <div style="max-width:1240px;margin:40px auto 0;border-top:1px solid #313a68;padding-top:20px;color:#5a659a;font-size:0.8rem">© 2026 Navi Occupational Therapy. All rights reserved.</div>
 </footer>
 
+</div>
+
+<div class="dcar-lb" data-dcar-lb aria-modal="true" role="dialog" aria-label="Expanded photo">
+  <button type="button" class="dcar-lb-close" aria-label="Close">&#215;</button>
+  <button type="button" class="dcar-lb-nav dcar-lb-prev" aria-label="Previous photo">&#8249;</button>
+  <img class="dcar-lb-img" alt="">
+  <button type="button" class="dcar-lb-nav dcar-lb-next" aria-label="Next photo">&#8250;</button>
 </div>
 
 <script>
@@ -582,6 +665,165 @@
       card.style.backgroundImage = '';
     });
   });
+})();
+</script>
+
+<script>
+(function () {
+  var root = document.querySelector('[data-dcar]');
+  if (!root) return;
+  var stage = root.querySelector('.dcar-stage');
+  var slides = Array.prototype.slice.call(root.querySelectorAll('.dcar-slide'));
+  var dotsWrap = root.querySelector('.dcar-dots');
+  var n = slides.length;
+  if (!n) return;
+  var idx = 0, timer = null, hovered = false, dragging = false;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function cfg() {
+    var w = window.innerWidth;
+    if (w <= 640) return { vis: 1, x: 58, z: 190, rot: 18, s: 0.82, o: [1, 0.5] };
+    if (w <= 980) return { vis: 2, x: 50, z: 220, rot: 24, s: 0.84, o: [1, 0.66, 0.36] };
+    return { vis: 2, x: 45, z: 250, rot: 27, s: 0.85, o: [1, 0.75, 0.4] };
+  }
+
+  function layout() {
+    var c = cfg();
+    for (var i = 0; i < n; i++) {
+      var sl = slides[i];
+      var d = i - idx;
+      if (d > n / 2) d -= n;
+      if (d < -n / 2) d += n;
+      var ad = Math.abs(d);
+      var sign = d < 0 ? -1 : 1;
+      if (ad > c.vis) {
+        sl.style.opacity = 0;
+        sl.style.pointerEvents = 'none';
+        sl.style.transform = 'translate(-50%,-50%) translateX(' + (sign * c.x * (c.vis + 1)) +
+          '%) translateZ(' + (-c.z * (c.vis + 1)) + 'px) scale(' + Math.pow(c.s, c.vis + 1) + ')';
+        sl.classList.remove('is-active');
+        sl.setAttribute('aria-hidden', 'true');
+        continue;
+      }
+      var tx = d === 0 ? 0 : sign * (c.x + (ad - 1) * c.x * 0.9);
+      var tz = d === 0 ? 0 : -(c.z + (ad - 1) * c.z * 0.7);
+      var ry = d === 0 ? 0 : -sign * c.rot;
+      sl.style.transform = 'translate(-50%,-50%) translateX(' + tx + '%) translateZ(' + tz +
+        'px) rotateY(' + ry + 'deg) scale(' + Math.pow(c.s, ad) + ')';
+      sl.style.opacity = c.o[ad] != null ? c.o[ad] : 0.3;
+      sl.style.zIndex = String(100 - ad);
+      sl.style.pointerEvents = 'auto';
+      sl.classList.toggle('is-active', d === 0);
+      sl.setAttribute('aria-hidden', d === 0 ? 'false' : 'true');
+    }
+    var dots = dotsWrap.children;
+    for (var k = 0; k < dots.length; k++) {
+      dots[k].classList.toggle('is-active', k === idx);
+      dots[k].setAttribute('aria-selected', k === idx ? 'true' : 'false');
+    }
+  }
+
+  function go(to) { idx = (to % n + n) % n; layout(); }
+  function next() { go(idx + 1); }
+  function prev() { go(idx - 1); }
+  function tick() { if (!hovered && !dragging && !lbOpen && !document.hidden) next(); }
+  function restart() { clearInterval(timer); timer = setInterval(tick, 5200); }
+
+  for (var i = 0; i < n; i++) {
+    (function (i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'dcar-dot';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-label', 'Go to photo ' + (i + 1));
+      b.addEventListener('click', function () { go(i); restart(); });
+      dotsWrap.appendChild(b);
+
+      slides[i].addEventListener('click', function () {
+        if (slides[i].classList.contains('is-active')) openLB(idx);
+        else { go(i); restart(); }
+      });
+    })(i);
+  }
+
+  root.querySelector('.dcar-prev').addEventListener('click', function () { prev(); restart(); });
+  root.querySelector('.dcar-next').addEventListener('click', function () { next(); restart(); });
+
+  root.addEventListener('mouseenter', function () { hovered = true; });
+  root.addEventListener('mouseleave', function () { hovered = false; });
+
+  // drag / swipe
+  var startX = 0, startY = 0, moved = false;
+  stage.addEventListener('pointerdown', function (e) {
+    dragging = true; moved = false; startX = e.clientX; startY = e.clientY;
+  });
+  window.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    if (Math.abs(e.clientX - startX) > 8) moved = true;
+  });
+  window.addEventListener('pointerup', function (e) {
+    if (!dragging) return;
+    dragging = false;
+    var dx = e.clientX - startX;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(e.clientY - startY)) {
+      dx < 0 ? next() : prev();
+      restart();
+    }
+  });
+  // swallow click after a real drag so it doesn't trigger slide click / lightbox
+  stage.addEventListener('click', function (e) {
+    if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; }
+  }, true);
+
+  root.setAttribute('tabindex', '0');
+  root.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { prev(); restart(); }
+    else if (e.key === 'ArrowRight') { next(); restart(); }
+    else if ((e.key === 'Enter' || e.key === ' ') && e.target === root) { openLB(idx); e.preventDefault(); }
+  });
+
+  window.addEventListener('resize', layout, { passive: true });
+
+  // ---------- lightbox ----------
+  var lb = document.querySelector('[data-dcar-lb]');
+  var lbImg = lb.querySelector('.dcar-lb-img');
+  var lbOpen = false, lbIdx = 0, lastFocus = null;
+  var srcs = slides.map(function (sl) { return sl.querySelector('img').getAttribute('src'); });
+  var alts = slides.map(function (sl) { return sl.querySelector('img').getAttribute('alt') || ''; });
+
+  function showLB() { lbImg.src = srcs[lbIdx]; lbImg.alt = alts[lbIdx]; }
+  function openLB(i) {
+    lbIdx = (i % n + n) % n;
+    lastFocus = document.activeElement;
+    showLB();
+    lb.style.display = 'flex';
+    lbOpen = true;
+    requestAnimationFrame(function () { lb.classList.add('is-open'); });
+    document.body.style.overflow = 'hidden';
+    lb.querySelector('.dcar-lb-close').focus();
+  }
+  function closeLB() {
+    lb.classList.remove('is-open');
+    lbOpen = false;
+    document.body.style.overflow = '';
+    setTimeout(function () { if (!lbOpen) lb.style.display = 'none'; }, 260);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function lbGo(step) { lbIdx = (lbIdx + step + n) % n; showLB(); go(lbIdx); }
+
+  lb.querySelector('.dcar-lb-close').addEventListener('click', closeLB);
+  lb.querySelector('.dcar-lb-prev').addEventListener('click', function (e) { e.stopPropagation(); lbGo(-1); });
+  lb.querySelector('.dcar-lb-next').addEventListener('click', function (e) { e.stopPropagation(); lbGo(1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLB(); });
+  document.addEventListener('keydown', function (e) {
+    if (!lbOpen) return;
+    if (e.key === 'Escape') closeLB();
+    else if (e.key === 'ArrowLeft') lbGo(-1);
+    else if (e.key === 'ArrowRight') lbGo(1);
+  });
+
+  layout();
+  restart();
 })();
 </script>
 
