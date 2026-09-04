@@ -69,7 +69,8 @@
 
   /* ---------- Depth Carousel ---------- */
   .dcar{position:relative;max-width:1080px;margin:36px auto 0;overflow:hidden}
-  .dcar-stage{position:relative;height:clamp(240px,40vw,440px);perspective:1600px}
+  .dcar-stage{position:relative;height:clamp(240px,40vw,440px);perspective:1600px;
+    touch-action:pan-y}
   .dcar-track{position:absolute;inset:0;margin:0;padding:0;list-style:none;transform-style:preserve-3d}
   .dcar-slide{position:absolute;top:50%;left:50%;width:min(60%,540px);aspect-ratio:3/2;margin:0;
     transform:translate(-50%,-50%);opacity:0;pointer-events:none;
@@ -92,10 +93,20 @@
   .dcar-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;cursor:pointer;
     background:#c2cfe0;transition:background .2s ease,transform .2s ease}
   .dcar-dot.is-active{background:#ff4d58;transform:scale(1.35)}
+  /* Below 820px the carousel breaks out to the full viewport width so the
+     side photos bleed off-screen instead of being clipped inside the page
+     gutters. #root has overflow:hidden, so the 100vw width can never create
+     a horizontal scrollbar; touch-action:pan-y stops sideways gesture drift. */
+  @media (max-width:820px){
+    .dcar{max-width:none;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+    .dcar-prev{left:10px}
+    .dcar-next{right:10px}
+  }
   @media (max-width:640px){
     .dcar-stage{height:clamp(210px,62vw,300px)}
-    .dcar-slide{width:min(76%,420px)}
+    .dcar-slide{width:min(72%,380px)}
     .dcar-nav{width:40px;height:40px;font-size:1.3rem}
+    #root [data-reveal-group="s7carousel"]{margin-top:28px!important}
   }
   .dcar-lb{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;
     padding:clamp(12px,4vw,48px);background:rgba(18,22,45,.92);opacity:0;transition:opacity .25s ease}
@@ -516,7 +527,7 @@
       <p style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;color:#2a3469;font-size:1.15rem">You Steer, We Support.</p>
     </div>
 
-    <div data-reveal-group="s7carousel" style="margin-top:8px">
+    <div data-reveal-group="s7carousel" style="margin-top:48px">
       <div class="dcar" data-dcar aria-roledescription="carousel" aria-label="Photos from Navi Occupational Therapy">
         <div class="dcar-stage">
           <button type="button" class="dcar-nav dcar-prev" aria-label="Previous photo">&#8249;</button>
