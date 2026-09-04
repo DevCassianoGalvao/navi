@@ -68,7 +68,8 @@
   }
 
   /* ---------- Depth Carousel ---------- */
-  .dcar{position:relative;max-width:1080px;margin:36px auto 0;overflow:hidden}
+  .dcar{position:relative;max-width:1080px;margin:36px auto 0;
+    overflow:hidden;overflow-x:clip;overflow-y:visible}
   .dcar-stage{position:relative;height:clamp(240px,40vw,440px);perspective:1600px;
     touch-action:pan-y}
   .dcar-track{position:absolute;inset:0;margin:0;padding:0;list-style:none;transform-style:preserve-3d}
@@ -89,7 +90,7 @@
   .dcar-nav:hover{background:#ff4d58;color:#ffffff}
   .dcar-prev{left:4px}
   .dcar-next{right:4px}
-  .dcar-dots{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:22px}
+  .dcar-dots{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:38px}
   .dcar-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;cursor:pointer;
     background:#c2cfe0;transition:background .2s ease,transform .2s ease}
   .dcar-dot.is-active{background:#ff4d58;transform:scale(1.35)}
@@ -98,12 +99,11 @@
      gutters. #root has overflow:hidden, so the 100vw width can never create
      a horizontal scrollbar; touch-action:pan-y stops sideways gesture drift. */
   @media (max-width:820px){
-    /* clip only the horizontal bleed; keep the vertical shadow + dots visible */
-    .dcar{max-width:none;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
-      overflow:hidden;overflow-x:clip;overflow-y:visible}
+    /* full-bleed: overflow-x:clip (from the base rule) still clips the
+       horizontal bleed, overflow-y:visible keeps the shadow + dots */
+    .dcar{max-width:none;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
     .dcar-prev{left:10px}
     .dcar-next{right:10px}
-    .dcar-dots{margin-top:40px}
     #root [data-reveal-group="s7carousel"]{margin-bottom:16px}
   }
   @media (max-width:640px){
