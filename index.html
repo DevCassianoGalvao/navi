@@ -16,36 +16,35 @@
   a:hover{color:#ff4d58}
   @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
-  /* ---------- Responsiveness ---------- */
+  /* ---------- Responsiveness ----------
+     NB: selectors use stable hooks (tag / data-* / .r* classes), never
+     [style*=] on animated nodes — the reveal script rewrites their style
+     attribute (normalising spacing) and substring matches would break. */
   @media (max-width:960px){
-    #root [style*="110px 64px"]{padding-top:72px!important;padding-bottom:72px!important;padding-left:32px!important;padding-right:32px!important}
+    #root section[style*="110px 64px"]{padding:72px 32px!important}
     #root [style*="80px 64px 0"]{padding:48px 32px 0!important}
-    #root [style*="36px 64px 80px"]{padding:28px 32px 64px!important}
+    #root [data-hero-anim="7"]{padding-left:32px!important;padding-right:32px!important;padding-bottom:56px!important}
     #root [style*="20px 64px"]{padding:16px 32px!important}
     #root footer[style*="56px 64px 32px"]{padding:48px 32px 28px!important}
-    #root [style*="repeat(3,1fr)"]{grid-template-columns:repeat(2,1fr)!important}
+    #root .rgrid-3{grid-template-columns:repeat(2,1fr)!important}
     #root [style*="gap:64px"]{gap:40px!important}
-    #root [style*="gap:56px"]{gap:36px!important}
+    #root [data-reveal-group="s5bio"]{gap:36px!important}
   }
   @media (max-width:720px){
-    #root [style*="110px 64px"]{padding-top:56px!important;padding-bottom:56px!important;padding-left:20px!important;padding-right:20px!important}
+    #root section[style*="110px 64px"]{padding:56px 20px!important}
     #root [style*="80px 64px 0"]{padding:36px 20px 0!important}
-    #root [style*="36px 64px 80px"]{padding:24px 20px 52px!important}
+    #root [data-hero-anim="7"]{padding-left:20px!important;padding-right:20px!important;padding-bottom:48px!important}
     #root [style*="20px 64px"]{padding:14px 20px!important}
     #root footer[style*="56px 64px 32px"]{padding:40px 20px 24px!important}
-    #root [style*="repeat(3,1fr)"]{grid-template-columns:1fr!important}
-    #root [style*="repeat(2,1fr)"]{grid-template-columns:1fr!important}
-    #root [style*="repeat(auto-fit,minmax(220px,1fr))"]{grid-template-columns:1fr!important}
-    #root [style*="flex:0 0 260px"]{flex:1 1 100%!important;width:100%!important}
-    #root [style*="flex:0 0 380px"]{flex:1 1 100%!important}
-    #root [style*="grid-template-columns:1.15fr 1fr"]{grid-template-columns:1fr 1fr!important}
+    #root .rgrid-3,#root .rgrid-2{grid-template-columns:1fr!important}
+    #root .rside{flex:1 1 100%!important;width:100%!important}
+    #root .rportrait{flex:1 1 100%!important}
+    #root [data-hero-anim="6"]{grid-template-columns:1fr 1fr!important}
     #root h1[data-hero-anim]{font-size:1.75rem!important}
-    #root [style*="48px 56px"]{padding:36px 24px!important}
-    #root [style*="padding:48px 56px"]{padding:32px 22px!important}
+    #root [data-reveal-group="s4quote"]{padding:32px 22px!important}
   }
   @media (max-width:460px){
-    #root [style*="repeat(2,1fr)"]{grid-template-columns:1fr!important}
-    #root [style*="flex-wrap:wrap"] [style*="border-radius:999px"]{width:100%;text-align:center}
+    #root [data-reveal-group="s7contact"]{grid-template-columns:1fr!important}
   }
 </style>
 </head>
@@ -211,7 +210,7 @@
         <h2 data-reveal-item="" style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#2a3469;font-size:clamp(1.9rem,3.4vw,2.6rem);margin:0;line-height:1.15">Specialised services that extend our support</h2>
         <p data-reveal-item="" style="margin:0;color:#4a5178;font-size:1.05rem;line-height:1.6;max-width:640px">Beyond the two core pillars, Navi offers services that complement a comprehensive, evidence-based clinical practice.</p>
       </div>
-      <div data-reveal-item="" style="flex:0 0 260px;width:260px;height:220px;border-radius:22px;overflow:hidden;box-shadow:0 16px 34px rgba(42,52,105,0.12)">
+      <div data-reveal-item="" class="rside" style="flex:0 0 260px;width:260px;height:220px;border-radius:22px;overflow:hidden;box-shadow:0 16px 34px rgba(42,52,105,0.12)">
         <img src="assets/amanda-21.jpg" alt="Colourful therapy tools and a wooden number puzzle used in sessions" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
     </div>
@@ -261,12 +260,12 @@
         <h2 data-reveal-item="" style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#2a3469;font-size:clamp(1.9rem,3.4vw,2.6rem);margin:0;line-height:1.15">Why choose Navi Occupational Therapy?</h2>
         <p data-reveal-item="" style="margin:0;color:#4a5178;font-size:1.05rem;line-height:1.6;max-width:600px">Trust is built through clinical consistency, clear communication and truly individualised care.</p>
       </div>
-      <div data-reveal-item="" style="flex:0 0 260px;width:260px;height:220px;border-radius:22px;overflow:hidden;box-shadow:0 16px 34px rgba(42,52,105,0.12)">
+      <div data-reveal-item="" class="rside" style="flex:0 0 260px;width:260px;height:220px;border-radius:22px;overflow:hidden;box-shadow:0 16px 34px rgba(42,52,105,0.12)">
         <img src="assets/amanda-26.jpg" alt="Hands sorting colourful therapy stickers during a session" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
     </div>
 
-    <div data-reveal-group="s4grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px">
+    <div data-reveal-group="s4grid" class="rgrid rgrid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px">
       <div data-glow="" data-reveal-item="" style="background:#ffffff;border:1px solid #e6ecf3;border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:10px;box-shadow:0 10px 26px rgba(42,52,105,0.06);transition:transform .3s ease;position:relative;overflow:hidden" style-hover="transform:translateY(-5px)">
         <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#ff4d58;font-size:1.4rem">01</span>
         <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#2a3469;font-size:1.1rem;margin:0">20+ years of clinical experience</h3>
@@ -323,7 +322,7 @@
     </div>
 
     <div data-reveal-group="s5bio" style="display:flex;gap:56px;flex-wrap:wrap;align-items:flex-start">
-      <div data-reveal-item="" style="flex:0 0 380px;position:relative;align-self:stretch">
+      <div data-reveal-item="" class="rportrait" style="flex:0 0 380px;position:relative;align-self:stretch">
         <div style="position:sticky;top:40px;border-radius:28px;overflow:hidden;box-shadow:0 24px 50px rgba(42,52,105,0.16);aspect-ratio:3/4">
           <img src="assets/amanda-portrait-crossed-arms.jpg" alt="Amanda Lasco, founder of Navi Occupational Therapy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease" style-hover="transform:scale(1.05)">
         </div>
@@ -335,7 +334,7 @@
           <p style="margin:0;color:#3d446b;font-size:1.12rem;line-height:1.72">Today, Navi combines more than two decades of international clinical experience with contemporary Australian practice. The goal is to offer high-quality, evidence-based Occupational Therapy that is collaborative and centred on the goals of each participant and their family.</p>
         </div>
 
-        <div data-reveal-group="s5values" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
+        <div data-reveal-group="s5values" class="rgrid rgrid-2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
           <div data-glow="" style="display:flex;flex-direction:column;gap:8px;padding:24px;background:#ffffff;border:1px solid #e6ecf3;border-radius:20px;position:relative;overflow:hidden">
             <img src="assets/symbol-coral.svg" alt="" style="width:38px;height:auto;display:block">
             <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#2a3469;font-size:1.05rem;margin:0">Compassion</h3>
@@ -378,7 +377,7 @@
       <p data-reveal-item="" style="margin:0;color:#c7cde3;font-size:1.05rem;line-height:1.6;max-width:600px">A simple first step to understand the need, confirm availability and work out the best way to help.</p>
     </div>
 
-    <div data-reveal-group="s6steps" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:44px">
+    <div data-reveal-group="s6steps" class="rgrid rgrid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:44px">
       <div data-glow="" data-reveal-item="" style="display:flex;flex-direction:column;gap:14px;background:rgba(255,255,255,0.06);border-top:3px solid #ff4d58;border-radius:22px;padding:28px;position:relative;overflow:hidden;transition:transform .3s ease,background .3s ease" style-hover="transform:translateY(-5px);background:rgba(255,255,255,0.1)">
         <span style="width:48px;height:48px;border-radius:50%;background:#ff4d58;color:#1f2750;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;display:flex;align-items:center;justify-content:center">1</span>
         <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#ffffff;font-size:1.15rem;margin:0">Make a referral</h3>
@@ -452,8 +451,8 @@
 <footer style="background:#1f2750;padding:56px 64px 32px;position:relative;overflow:hidden">
   <span style="position:absolute;right:-40px;bottom:-40px;opacity:0.06"><img src="assets/symbol-white.svg" alt="" style="width:260px;height:auto;display:block"></span>
   <div style="max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;position:relative;z-index:1">
-    <div style="display:flex;flex-direction:column;gap:14px;max-width:320px">
-      <img style="height:64px;width:auto;display:block;object-fit:contain" src="./logo-branco-mtm6ovve-8wax.svg" alt="Navi Occupational Therapy">
+    <div style="display:flex;flex-direction:column;align-items:flex-start;gap:14px;max-width:320px">
+      <img style="height:64px;width:auto;display:block;object-fit:contain;align-self:flex-start;margin:0" src="./logo-branco-mtm6ovve-8wax.svg" alt="Navi Occupational Therapy">
       <span style="font-family:'Shadows Into Light',cursive;color:#ff4d58;font-size:1.3rem">You steer. We support.</span>
       <p style="margin:8px 0 0;color:#8f9ac2;font-size:0.85rem;line-height:1.6">Occupational Therapy for assessments, clinical reports and paediatric care across South East Queensland.</p>
     </div>
